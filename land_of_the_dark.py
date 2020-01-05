@@ -7,7 +7,7 @@ import time
 import os
 import random
 bot = commands.Bot(command_prefix = ".")
-
+bot.remove_command("help")
 @bot.event
 async def on_ready():
     print("Bot is online ")
@@ -16,7 +16,6 @@ async def on_ready():
 
 async def stamina_regen():
     while(True):
-        print("working")
         for i in range(0,len(os.listdir(constants.userSavePath))):
             with open(constants.userSavePath+"{0}".format(os.listdir(constants.userSavePath)[i]),"r") as File:
                 lines = File.readlines()
@@ -85,11 +84,11 @@ async def showclasses(ctx):
 
 #### COMMANDS ##############################################################################################################################################################################################################
 
-@bot.command()
+@bot.command(aliases=["command","help"])
 async def commands(ctx, *args):
     if len(args) < 1 or args[0] == "1":
         embed = discord.Embed(
-            description = "**<@{0}> Here is a list of all the commands!**\n\n**.chooseclass**\nSelect a class from the given list:\n [assassin/ninja/mage/archer/warrior/deathlord/ogre/demon/fairy/forager]\n An example of the command is: .chooseclass forager\n\n**.lore**\n View the lore of all the characters in this world.\n\n**.train**\n Used to hone your skills and increase your combat power\n Usage: .train [strength/dexterity/intelligence]\n An example of the command is:  .train strength 20\n\n**.forage**\n Used to find magical items and potions\n Usage: .forage [amount]\n An example of this command is: .forage 15\n\n**.use**\n Used to use the items in your inventory in order to gain effects based on the item\n Usage: .use [general item] [specify item] [amount]\n An example of this command is: .use potion strength 5\n\n**.inventory**\n Used to check the items in your inventory\n\n**.profile**\n Used to check your or other player's profiles.\n An exmaple of this command is: .profile OR .profile @otherplayer\n\n**.commands**\n Used to navigate through the command pages.\n Usage: .commands [page]\n An example of this command is .commands 2\n\n\n`PAGE 1`".format(ctx.author.id),
+            description = "**<@{0}> Here is a list of all the commands!**\n\n**.chooseclass**\nSelect a class from the given list:\n [assassin/ninja/mage/archer/warrior/deathlord/ogre/demon/fairy/forager]\n An example of the command is: .chooseclass forager\n\n**.showclasses**\n View all the characters available.\n\n**.train**\n Used to hone your skills and increase your combat power\n Usage: .train [strength/dexterity/intelligence]\n An example of the command is:  .train strength 20\n\n**.forage**\n Used to find magical items and potions\n Usage: .forage [amount]\n An example of this command is: .forage 15\n\n**.use**\n Used to use the items in your inventory in order to gain effects based on the item\n Usage: .use [general item] [specify item] [amount]\n An example of this command is: .use potion strength 5\n\n**.inventory**\n Used to check the items in your inventory\n\n**.profile**\n Used to check your or other player's profiles.\n An exmaple of this command is: .profile OR .profile @otherplayer\n\n**.commands**\n Used to navigate through the command pages.\n Usage: .commands [page]\n An example of this command is .commands 2\n\n\n`PAGE 1`".format(ctx.author.id),
             colour = discord.Colour.red()
             )
         embed.set_author(name="{0} " .format(ctx.author.name), icon_url=ctx.author.avatar_url)
@@ -97,7 +96,7 @@ async def commands(ctx, *args):
 
     elif args[0] == "2":
         embed = discord.Embed(
-            description = "**<@{0}> Here is a list of all the commands!**\n\n**.none**\n none\n Usage: none\n An example of this command is: none\n\n\n`PAGE 2`".format(ctx.author.id),
+            description = "**<@{0}> Here is a list of all the commands!**\n\n**.lore**\n View the lore of all the characters in this world.\n\n\n`PAGE 2`".format(ctx.author.id),
             colour = discord.Colour.red()
             )
         embed.set_author(name="{0} " .format(ctx.author.name), icon_url=ctx.author.avatar_url)
